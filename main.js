@@ -31,25 +31,18 @@ function addNewItem(event) {
     resetInput();
 
     // Add the item to the <ul>.
-    
-
     // Now comes your part: add the item to the list.
-    // userInputArr.push(newItem)
-    
-
     // Display it in next-item if it's the first item:
     const i = 0;
     
     if(newItem !== '') { // definitely change that condition!
         displayItem(newItem);
         userInputArr.push(newItem);
-        console.log(`userInputArr: ${userInputArr}`);
-        
-        
-        document.querySelector('#next-item').innerText = userInputArr[0]; // Replace that empty string with the actual item!
+    
+        document.querySelector('#next-item').innerText = 'Next item on your list is: ' + userInputArr[0]; // Replace that empty string with the actual item!
     }
 
-    document.querySelector('#newest-item').innerText = userInputArr[userInputArr.length - 1]; // Replace that empty string with the actual item!
+    document.querySelector('#newest-item').innerText ="You've just added: " + userInputArr[userInputArr.length - 1]; // Replace that empty string with the actual item!
 
     document.querySelector('#number-of-items').innerText = userInputArr.length; // Replace that with the number of items!
 }
@@ -57,25 +50,45 @@ function addNewItem(event) {
 function removeItem(event) {
     // Prevent page reload.
     event.preventDefault()
+    
 
     if(isStack) {
         removeLastFromPage();
         // Your code to remove it from the array  goes here!
         userInputArr.pop(userInputArr);
-        console.log(`userInputArr: ${userInputArr}`);
-        document.querySelector('#next-item').innerText = userInputArr[0];
 
-    } else {
+    } else if(isStack === false && userInputArr.length > 0) {
         removeFirstFromPage();
         // Your code to remove it from the array goes here!
-        completedArr.push(userInputArr.shift(userInputArr));
-        document.querySelector('#next-item').innerText = userInputArr[0];
-        document.querySelector('#completed-bucket').innerText = completedArr;
-        console.log(`UserInputArr: ${userInputArr}`);
-        console.log(`CompletedArr: ${completedArr}`);
+        const removedNumber = userInputArr.shift();
+        completedArr.push(removedNumber);
+        displayCompleted(removedNumber);
+        // document.querySelector('#next-item').innerText ='Nefxt item on your list is: ' + userInputArr[0];
+    }
+    if(isStack && userInputArr.length === 0) {
+        
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
+       document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
+
+    } else if(isStack && userInputArr.length > 0) {
+       
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
+        document.querySelector('#newest-item').innerText ="You've just added: " + userInputArr[userInputArr.length - 1];
+
+    } else if(!isStack && userInputArr.length === 0) {
+        
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
+        document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
+
+    } else if(!isStack && userInputArr.length > 0) {
+        
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
+        document.querySelector('#newest-item').innerText ="You've just added: " + userInputArr[userInputArr.length - 1];
+
     }
     document.querySelector('#newest-item').innerText = userInputArr[userInputArr.length - 1];
     document.querySelector('#number-of-items').innerText = userInputArr.length;
+    // document.querySelector('#completed-bucket').innerText = completedArr;
 }
 
 function toggleQueueAndStack(event) {
@@ -104,7 +117,7 @@ Feel free to check it out though.
 */
 
 function removeLastFromPage() {
-    const items = document.querySelectorAll('li');
+    const items = document.querySelectorAll('#items > li');
     const lastItem = items[items.length - 1];
     lastItem.parentNode.removeChild(lastItem);
 }
@@ -127,7 +140,7 @@ function displayItem(itemText) {
     document.querySelector('#items').appendChild(newItem);
 }
 
-function completedDisplay(itemText) {
+function displayCompleted(itemText) {
     // Displays item on list. No need to add anything here!
     const newItem = document.createElement('li');
     newItem.innerText = itemText;
