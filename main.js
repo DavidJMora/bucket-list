@@ -20,9 +20,38 @@ function init() {
         .addEventListener('click', toggleQueueAndStack);
 }
 
+function appropriateScript() {
+
+    if(isStack && userInputArr.length === 0) {
+        
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
+        document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
+        document.querySelector('#number-of-items').innerText ='Such Empty, Much Wow';
+
+    } else if(isStack && userInputArr.length > 0) {
+   
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
+        document.querySelector('#newest-item').innerText ="Most recently added item is: " + userInputArr[userInputArr.length - 1];
+        document.querySelector('#number-of-items').innerText ="Your list is grow! It now has " + userInputArr.length + ' items on it!';
+
+    } else if(!isStack && userInputArr.length === 0) {
+    
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
+        document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
+        document.querySelector('#number-of-items').innerText = "Ermahgerd! Furr mah up!!";
+
+    } else if(!isStack && userInputArr.length > 0) {
+   
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
+        document.querySelector('#newest-item').innerText ="You've just added: " + userInputArr[userInputArr.length - 1];
+        document.querySelector('#number-of-items').innerText = userInputArr.length;
+    }
+}
+
 function addNewItem(event) {
     // Prevent page reload.
-    event.preventDefault()
+    event.preventDefault();
+    appropriateScript();
     
     // Get the value from the input field.
     const newItem = document.querySelector('#new-item').value;
@@ -38,57 +67,28 @@ function addNewItem(event) {
     if(newItem !== '') { // definitely change that condition!
         displayItem(newItem);
         userInputArr.push(newItem);
-    
-        document.querySelector('#next-item').innerText = 'Next item on your list is: ' + userInputArr[0]; // Replace that empty string with the actual item!
     }
-
-    document.querySelector('#newest-item').innerText ="You've just added: " + userInputArr[userInputArr.length - 1]; // Replace that empty string with the actual item!
-
-    document.querySelector('#number-of-items').innerText = userInputArr.length; // Replace that with the number of items!
+    appropriateScript();
 }
 
 function removeItem(event) {
     // Prevent page reload.
-    event.preventDefault()
+    event.preventDefault();
+    appropriateScript();
     
-
     if(isStack) {
         removeLastFromPage();
         // Your code to remove it from the array  goes here!
-        userInputArr.pop(userInputArr);
-
-    } else if(isStack === false && userInputArr.length > 0) {
-        removeFirstFromPage();
-        // Your code to remove it from the array goes here!
-        const removedNumber = userInputArr.shift();
-        completedArr.push(removedNumber);
-        displayCompleted(removedNumber);
-        // document.querySelector('#next-item').innerText ='Nefxt item on your list is: ' + userInputArr[0];
-    }
-    if(isStack && userInputArr.length === 0) {
-        
-        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
-       document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
-
-    } else if(isStack && userInputArr.length > 0) {
-       
-        document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
-        document.querySelector('#newest-item').innerText ="You've just added: " + userInputArr[userInputArr.length - 1];
-
-    } else if(!isStack && userInputArr.length === 0) {
-        
-        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
-        document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
+        userInputArr.pop();
 
     } else if(!isStack && userInputArr.length > 0) {
-        
-        document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
-        document.querySelector('#newest-item').innerText ="You've just added: " + userInputArr[userInputArr.length - 1];
-
+        removeFirstFromPage();
+        // Your code to remove it from the array goes here!
+        const removedItem = userInputArr.shift();
+        completedArr.push(removedItem);
+        displayCompleted(removedItem);
     }
-    document.querySelector('#newest-item').innerText = userInputArr[userInputArr.length - 1];
-    document.querySelector('#number-of-items').innerText = userInputArr.length;
-    // document.querySelector('#completed-bucket').innerText = completedArr;
+    appropriateScript();
 }
 
 function toggleQueueAndStack(event) {
