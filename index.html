@@ -11,7 +11,7 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <main>
+    <main class="container">
         <!-- proceeding section is designated for containing the main header as well as the initial list -->
         <head>
             <h1 id="heading">The Bucket List</h1>
@@ -20,24 +20,24 @@
             <ul id="items"></ul>
         </section>
         <!-- proceeding section is designated for the script that displays during adding and removing -->
-        <article>
-            <secton>
-                <h3 id="newest-item"></h3>
+        <article class="row">
+            <section class="col-12 col-md-4">
+                <h3 id="newest-item">Newest Item</h3>
             </section>
-            <section>
-                <h3 id="next-item"></h3>
+            <section class="col-12 col-md-4">
+                <h3 id="next-item">Next Item</h3>
             </section>
-            <section>
-                <h3 id="number-of-items"></h3>
+            <section class="col-12 col-md-4">
+                <h3 id="number-of-items">Number of Items</h3>
             </section>
         </article>
         <section>
             <!-- proceeding section is designated for the form user will input data to be displayed on initial list -->
-            <form>
-                <input type="text" id="new-item">
-                <button id="submit">Add An Item</button>
-                <button id="remove">Remove An Item</button>
-                <button id="toggle">Toggle to Queue</button>
+            <form class="row">
+                <input type="text" id="new-item" class="col-7 col-md-6">
+                <button id="submit" class="col-5 col-md-2">Add An Item</button>
+                <button id="remove" class="col-6 col-md-2">Remove An Item</button>
+                <button id="toggle" class=" col-6 col-md-2">Toggle to Queue</button>
             </form>
         </section>
         <section>

@@ -36,8 +36,8 @@ function printRemoveScript() {
 
     } else if(!isStack && userInputArr.length === 0) {
     
-        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
-        document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing! You have successfully completed your list. Good Job!';
+        document.querySelector('#newest-item').innerText ="Your dreams have been fulfilled!";
         document.querySelector('#number-of-items').innerText = "Ermahgerd! Furr mah up!!";
 
     } else if(!isStack && userInputArr.length > 0) {
