@@ -19,8 +19,38 @@ function init() {
     document.querySelector('#toggle')
         .addEventListener('click', toggleQueueAndStack);
 }
+//code for when elements are removed from list via stack or queue
+function printRemoveScript() {
+    
+    if(isStack && userInputArr.length === 0) {
+        
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
+        document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
+        document.querySelector('#number-of-items').innerText ='Such Empty, Much Wow';
 
-function appropriateScript() {
+    } else if(isStack && userInputArr.length > 0) {
+    
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
+        document.querySelector('#newest-item').innerText ="Most recently added item is: " + userInputArr[userInputArr.length - 1];
+        document.querySelector('#number-of-items').innerText ="Your list is shrinking! It now has " + userInputArr.length + ' items on it!';
+
+    } else if(!isStack && userInputArr.length === 0) {
+    
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + 'Nothing!!! ADD MORE THINGS PLEASE!!';
+        document.querySelector('#newest-item').innerText ="Let's add things to fulfill your dreams!";
+        document.querySelector('#number-of-items').innerText = "Ermahgerd! Furr mah up!!";
+
+    } else if(!isStack && userInputArr.length > 0) {
+   
+        document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
+        
+        document.querySelector('#newest-item').innerText ="You've just completed: " +  completedArr[completedArr.length - 1] + ';' + ' your previously added item is: ' + userInputArr[userInputArr.length - 1];
+        
+        document.querySelector('#number-of-items').innerText ='Your list is shrinking! It now has ' + userInputArr.length + ' items on it!';
+    }
+}
+//code for script when items are added either in stack or queue
+function printAddScript() {
 
     if(isStack && userInputArr.length === 0) {
         
@@ -29,10 +59,10 @@ function appropriateScript() {
         document.querySelector('#number-of-items').innerText ='Such Empty, Much Wow';
 
     } else if(isStack && userInputArr.length > 0) {
-   
+    
         document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
         document.querySelector('#newest-item').innerText ="Most recently added item is: " + userInputArr[userInputArr.length - 1];
-        document.querySelector('#number-of-items').innerText ="Your list is grow! It now has " + userInputArr.length + ' items on it!';
+        document.querySelector('#number-of-items').innerText ="Your list is growing! It now has " + userInputArr.length + ' items on it!';
 
     } else if(!isStack && userInputArr.length === 0) {
     
@@ -44,14 +74,14 @@ function appropriateScript() {
    
         document.querySelector('#next-item').innerText ='Next item on your list is: ' + userInputArr[0];
         document.querySelector('#newest-item').innerText ="You've just added: " + userInputArr[userInputArr.length - 1];
-        document.querySelector('#number-of-items').innerText = userInputArr.length;
+        document.querySelector('#number-of-items').innerText ="Your list is growing! It now has " + userInputArr.length + ' items on it!';
     }
 }
 
 function addNewItem(event) {
     // Prevent page reload.
     event.preventDefault();
-    appropriateScript();
+    printAddScript();
     
     // Get the value from the input field.
     const newItem = document.querySelector('#new-item').value;
@@ -68,13 +98,13 @@ function addNewItem(event) {
         displayItem(newItem);
         userInputArr.push(newItem);
     }
-    appropriateScript();
+    printAddScript();
 }
 
 function removeItem(event) {
     // Prevent page reload.
     event.preventDefault();
-    appropriateScript();
+    printRemoveScript();
     
     if(isStack) {
         removeLastFromPage();
@@ -88,7 +118,7 @@ function removeItem(event) {
         completedArr.push(removedItem);
         displayCompleted(removedItem);
     }
-    appropriateScript();
+    printRemoveScript();
 }
 
 function toggleQueueAndStack(event) {
