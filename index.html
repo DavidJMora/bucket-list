@@ -5,34 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bucket List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- code for bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="main.js"></script>
 </head>
 <body>
-    <div>
-        <h1 id="heading">The Bucket List</h1>
-    </div>
-    <ul id="items">
-    </ul>
-    <div>
-        <h3 id="newest-item"></h3>
-    </div>
-    <div>
-        <h3 id="next-item"></h3>
-    </div>
-    <div>
-        <h3 id="number-of-items"></h3>
-    </div>
-    <form>
-        <input type="text" id="new-item">
-        <button id="submit">Add An Item</button>
-        <button id="remove">Remove An Item</button>
-        <button id="toggle">Toggle to Queue</button>
-    </form>
-    <div>
-        <h3 id="completed-item">Completed List</h3>
-    </div>
-    <ul id="completed-bucket">
-    </ul>
+    <main>
+        <!-- proceeding section is designated for containing the main header as well as the initial list -->
+        <head>
+            <h1 id="heading">The Bucket List</h1>
+        </head>
+        <section>
+            <ul id="items"></ul>
+        </section>
+        <!-- proceeding section is designated for the script that displays during adding and removing -->
+        <article>
+            <secton>
+                <h3 id="newest-item"></h3>
+            </section>
+            <section>
+                <h3 id="next-item"></h3>
+            </section>
+            <section>
+                <h3 id="number-of-items"></h3>
+            </section>
+        </article>
+        <section>
+            <!-- proceeding section is designated for the form user will input data to be displayed on initial list -->
+            <form>
+                <input type="text" id="new-item">
+                <button id="submit">Add An Item</button>
+                <button id="remove">Remove An Item</button>
+                <button id="toggle">Toggle to Queue</button>
+            </form>
+        </section>
+        <section>
+            <section>
+                <h3 id="completed-item">Completed List</h3>
+            </section>
+            <section>
+                <ul id="completed-bucket"></ul>
+            </section>
+        </section>
+    </main>
 </body>
 </html>
