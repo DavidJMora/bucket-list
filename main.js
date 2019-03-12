@@ -92,7 +92,6 @@ function addNewItem(event) {
     // Add the item to the <ul>.
     // Now comes your part: add the item to the list.
     // Display it in next-item if it's the first item:
-    const i = 0;
     
     if(newItem !== '') { // definitely change that condition!
         displayItem(newItem);
