@@ -14,35 +14,39 @@
     <main class="container">
         <!-- proceeding section is designated for containing the main header as well as the initial list -->
         <head>
-            <h1 id="heading">The Bucket List</h1>
+            <h1 id="heading" class="text-light">The Bucket List</h1>
         </head>
         <section>
-            <ul id="items"></ul>
+            <h3 class="text-light">Incomplete List</h3>
+            <ul id="items" class="text-light"></ul>
         </section>
         <!-- proceeding section is designated for the script that displays during adding and removing -->
         <article class="row">
             <section class="col-12 col-md-4">
-                <h3 id="newest-item">Newest Item</h3>
+                <h6 class="text-light">Newest Item</h6>
+                <p id="newest-item" class="text-light"></p>
             </section>
             <section class="col-12 col-md-4">
-                <h3 id="next-item">Next Item</h3>
+                <h6 class="text-light">Next Item</h6>
+                <p id="next-item" class="text-light"> </p>
             </section>
             <section class="col-12 col-md-4">
-                <h3 id="number-of-items">Number of Items</h3>
+                <h6 class="text-light">Number of Item(s)</h6>
+                <p id="number-of-items" class="text-light"></p>
             </section>
         </article>
         <section>
             <!-- proceeding section is designated for the form user will input data to be displayed on initial list -->
             <form class="row">
-                <input type="text" id="new-item" class="col-7 col-md-6">
-                <button id="submit" class="col-5 col-md-2">Add An Item</button>
-                <button id="remove" class="col-6 col-md-2">Remove An Item</button>
-                <button id="toggle" class=" col-6 col-md-2">Toggle to Queue</button>
+                <input type="text" id="new-item" class="col-7">
+                <button id="submit" class="col-5">Add An Item</button>
+                <button id="remove" class="col-6">Remove An Item</button>
+                <button id="toggle" class=" col-6">Toggle to Queue</button>
             </form>
         </section>
         <section>
             <section>
-                <h3 id="completed-item">Completed List</h3>
+                <h2 id="completed-item">Completed List</h2>
             </section>
             <section>
                 <ul id="completed-bucket"></ul>
